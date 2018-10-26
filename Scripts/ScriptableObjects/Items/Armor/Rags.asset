@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7b1093d00f7fc419b1a064b809e243, type: 3}
+  m_Name: Rags
+  m_EditorClassIdentifier: 
+  name: Rags
+  icon: {fileID: 21300000, guid: 65a9410232dbc154c9cec96a5fbd07b1, type: 3}
+  equipSlot: 2
+  attackStats:
+    attack:
+      baseValue: 0
+    attackSpeed:
+      baseValue: 0
+    fireAttack:
+      baseValue: 0
+    iceAttack:
+      baseValue: 0
+    shockAttack:
+      baseValue: 0
+    poisonAttack:
+      baseValue: 0
+  defenceStats:
+    maxHealth:
+      baseValue: 10
+    defence:
+      baseValue: 5
+    speed:
+      baseValue: 5
+    fireDefence:
+      baseValue: 0
+    iceDefence:
+      baseValue: 1
+    shockDefence:
+      baseValue: 0
+    poisonDefence:
+      baseValue: 0
