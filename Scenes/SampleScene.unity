@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 48313701}
   - component: {fileID: 48313700}
   - component: {fileID: 48313699}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 120808488}
   - component: {fileID: 120808487}
   - component: {fileID: 120808486}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 138081740}
   - component: {fileID: 138081739}
   - component: {fileID: 138081738}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 144204952}
   - component: {fileID: 144204951}
   - component: {fileID: 144204950}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 253970321}
   - component: {fileID: 253970320}
   - component: {fileID: 253970319}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +799,7 @@ Transform:
   - {fileID: 1471176708}
   - {fileID: 1644408858}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &323250720
 GameObject:
@@ -812,7 +812,7 @@ GameObject:
   - component: {fileID: 323250723}
   - component: {fileID: 323250722}
   - component: {fileID: 323250721}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1135,7 +1135,7 @@ GameObject:
   - component: {fileID: 415647920}
   - component: {fileID: 415647919}
   - component: {fileID: 415647918}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1233,7 +1233,7 @@ GameObject:
   - component: {fileID: 455018448}
   - component: {fileID: 455018447}
   - component: {fileID: 455018446}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1370,7 +1370,7 @@ Transform:
   - {fileID: 144204953}
   - {fileID: 1320220141}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &492500184
 Prefab:
@@ -1910,7 +1910,7 @@ GameObject:
   - component: {fileID: 626677237}
   - component: {fileID: 626677236}
   - component: {fileID: 626677235}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2024,7 +2024,7 @@ Transform:
   m_Children:
   - {fileID: 1025706886}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &767002731
 Prefab:
@@ -2278,7 +2278,7 @@ GameObject:
   - component: {fileID: 781925921}
   - component: {fileID: 781925920}
   - component: {fileID: 781925919}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2977,6 +2977,277 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 914884110}
   m_CullTransparentMesh: 0
+--- !u!1 &926276990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926276991}
+  - component: {fileID: 926277000}
+  - component: {fileID: 926276999}
+  - component: {fileID: 926276998}
+  - component: {fileID: 926276996}
+  - component: {fileID: 926276995}
+  - component: {fileID: 926276994}
+  - component: {fileID: 926276993}
+  - component: {fileID: 926276992}
+  - component: {fileID: 926277001}
+  m_Layer: 12
+  m_Name: Pet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &926276991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.99, y: -8.17, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1324550525}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &926276992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351a134927b03d54a884333bf1fea71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendDetectionRadius: 0
+  friendlyMask:
+    serializedVersion: 2
+    m_Bits: 4352
+  enemyDetectionRadius: 3.16
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  enableFieldOfView: 0
+  fieldOfViewAngle: 0
+  enemyHearRadius: 0
+  idleOnlyOnTargets: 0
+  idleMinTime: 0
+  idleMaxTime: 0
+  idleTimeLeft: 0
+  patrolType: 0
+  patrolMinRadius: 0
+  patrolMaxRadius: 0
+  patrolMinTime: 0
+  patrolMaxTime: 0
+  patrolTargets: []
+  maxPatrolTargets: 0
+  patrolTimeLeft: 0
+  patrolRadius: 0
+  allowFollow: 1
+  permanentFollowTarget: {fileID: 1475188066}
+  maxFollowTargetDistance: 5
+  friendlyStoppingDistance: 3
+  followTargetRefreshTime: 0.5
+  attackTargetRefreshTime: 0.5
+  disposition: 0
+  showTreeDebugInfo: 0
+  showEnemyDetectionInfo: 1
+  showEnemyLink: 1
+  showFriendDetectionRadius: 1
+  showFrindlyLink: 1
+  showPatrolTargets: 1
+  targetInRange: 0
+  targetIsFriendly: 0
+  attackAgent: {fileID: 0}
+  faceController: {fileID: 926276998}
+--- !u!114 &926276993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef541b79bc546f54cafce84c2662b7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  horizontalRayCount: 0
+  verticalRayCount: 0
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  ctrlCollider: {fileID: 0}
+--- !u!61 &926276994
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0000009536743, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &926276995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad705bba33f3642f4bc26cd844e12c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3.5
+  angularSpeed: 120
+  acceleration: 8
+  stoppingDistance: 0
+  autoBraking: 1
+  radius: 0.5
+  quality: 4
+  priority: 50
+  autoRepath: 1
+--- !u!114 &926276996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abfdd15f0d37a74cbd3fd1c65de9f70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackStats:
+    attack:
+      baseValue: 3
+    fireAttack:
+      baseValue: 1
+    iceAttack:
+      baseValue: 1
+    shockAttack:
+      baseValue: 0
+    poisonAttack:
+      baseValue: 0
+  defenceStats:
+    maxHealth:
+      baseValue: 120
+    defence:
+      baseValue: 3
+    speed:
+      baseValue: 5
+    knockbackReduction:
+      baseValue: 0
+    invulnerableDuration:
+      baseValue: 0
+    fireDefence:
+      baseValue: 0
+    iceDefence:
+      baseValue: 0
+    shockDefence:
+      baseValue: 0
+    poisonDefence:
+      baseValue: 0
+  lastAttacker: {fileID: 0}
+  killable: 1
+--- !u!114 &926276998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125a3b5f577d9743a29b9862a4a4aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFaceDirection: {x: 0, y: -1}
+  showFaceDirection: 1
+--- !u!23 &926276999
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 9275b1b80c24a5b4e9074f66f87473d3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &926277000
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &926277001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926276990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 863aad4b38352f545bad2f579a3b0386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1.5
+  knockback:
+    baseValue: 0.2
+  knockbackSpeed:
+    baseValue: 4
+  attackRate:
+    baseValue: 3
+  attackDuration: 0.2
+  attackDirection: 0
 --- !u!1 &970987763
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,7 +3342,7 @@ RectTransform:
   - {fileID: 1036804082}
   - {fileID: 415480466}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3150,9 +3421,9 @@ GameObject:
   - component: {fileID: 1025706894}
   - component: {fileID: 1025706893}
   - component: {fileID: 1025706895}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3179,7 +3450,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3209,17 +3480,14 @@ MonoBehaviour:
   friendDetectionRadius: 4
   friendlyMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 1024
   enemyDetectionRadius: 5
   enemyMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4352
   enableFieldOfView: 1
   fieldOfViewAngle: 90
   enemyHearRadius: 2.2
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
   idleOnlyOnTargets: 1
   idleMinTime: 1
   idleMaxTime: 2
@@ -3230,23 +3498,27 @@ MonoBehaviour:
   patrolMinTime: 6
   patrolMaxTime: 12
   patrolTargets:
-  - {x: 0.01, y: 7.26, z: 0}
-  - {x: -7.65, y: 12.42, z: 0}
-  - {x: -9.71, y: 4.14, z: 0}
+  - {x: 0.34, y: 7.26, z: 0}
+  - {x: -7.47, y: 12.42, z: 0}
+  - {x: -12.68, y: 9.19, z: 0}
   maxPatrolTargets: 3
   patrolTimeLeft: 0
   patrolRadius: 0
   allowFollow: 0
+  permanentFollowTarget: {fileID: 0}
+  maxFollowTargetDistance: 5
+  friendlyStoppingDistance: 4
   followTargetRefreshTime: 0.5
   attackTargetRefreshTime: 0.5
+  disposition: 0
   showTreeDebugInfo: 0
   showEnemyDetectionInfo: 1
   showEnemyLink: 1
   showFriendDetectionRadius: 0
+  showFrindlyLink: 0
   showPatrolTargets: 1
   targetInRange: 0
   targetIsFriendly: 0
-  walker: {fileID: 0}
   attackAgent: {fileID: 0}
   faceController: {fileID: 1025706895}
 --- !u!23 &1025706889
@@ -3302,6 +3574,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef541b79bc546f54cafce84c2662b7b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  horizontalRayCount: 0
+  verticalRayCount: 0
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  ctrlCollider: {fileID: 0}
 --- !u!114 &1025706892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3313,7 +3593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad705bba33f3642f4bc26cd844e12c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
+  speed: 1
   angularSpeed: 120
   acceleration: 8
   stoppingDistance: 0
@@ -3335,16 +3615,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   knockback:
-    baseValue: 0
+    baseValue: 0.3
+  knockbackSpeed:
+    baseValue: 3
   attackRate:
     baseValue: 1.5
   attackDuration: 0.2
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 0
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
   attackDirection: 0
 --- !u!114 &1025706894
 MonoBehaviour:
@@ -3354,14 +3630,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1025706885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783adaa988485d74bbbf4d484697669d, type: 3}
+  m_Script: {fileID: 11500000, guid: ba74a5c12ef0cad4b927b0ff26d7b30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackStats:
     attack:
       baseValue: 5
-    attackSpeed:
-      baseValue: 1
     fireAttack:
       baseValue: 5
     iceAttack:
@@ -3376,8 +3650,10 @@ MonoBehaviour:
     defence:
       baseValue: 10
     speed:
-      baseValue: 4.5
+      baseValue: 4
     knockbackReduction:
+      baseValue: 0
+    invulnerableDuration:
       baseValue: 0
     fireDefence:
       baseValue: 4
@@ -3387,6 +3663,7 @@ MonoBehaviour:
       baseValue: 0
     poisonDefence:
       baseValue: 0
+  lastAttacker: {fileID: 0}
 --- !u!114 &1025706895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3484,6 +3761,7 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -3570,7 +3848,7 @@ GameObject:
   - component: {fileID: 1083985136}
   - component: {fileID: 1083985135}
   - component: {fileID: 1083985134}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3738,7 +4016,7 @@ GameObject:
   - component: {fileID: 1146365494}
   - component: {fileID: 1146365493}
   - component: {fileID: 1146365492}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4036,7 +4314,7 @@ GameObject:
   - component: {fileID: 1182137623}
   - component: {fileID: 1182137622}
   - component: {fileID: 1182137621}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4363,7 +4641,7 @@ GameObject:
   - component: {fileID: 1274874247}
   - component: {fileID: 1274874246}
   - component: {fileID: 1274874245}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4536,7 +4814,7 @@ GameObject:
   - component: {fileID: 1296291750}
   - component: {fileID: 1296291749}
   - component: {fileID: 1296291748}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4634,7 +4912,7 @@ GameObject:
   - component: {fileID: 1320220140}
   - component: {fileID: 1320220139}
   - component: {fileID: 1320220138}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4721,6 +4999,35 @@ Transform:
   m_Father: {fileID: 459421438}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &1324550524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1324550525}
+  m_Layer: 8
+  m_Name: Friendly
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1324550525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1324550524}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.71, y: 0.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_Children:
+  - {fileID: 926276991}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1337265251
 Prefab:
   m_ObjectHideFlags: 0
@@ -5116,7 +5423,7 @@ GameObject:
   - component: {fileID: 1419665373}
   - component: {fileID: 1419665372}
   - component: {fileID: 1419665371}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5337,9 +5644,10 @@ GameObject:
   - component: {fileID: 1475188070}
   - component: {fileID: 1475188064}
   - component: {fileID: 1475188071}
-  m_Layer: 10
+  - component: {fileID: 1475188072}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5356,9 +5664,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableDetectDistance: 3
-  intercatableMask:
+  interactableMask:
     serializedVersion: 2
     m_Bits: 2048
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 1024
   controller: {fileID: 0}
   character: {fileID: 0}
   focus: {fileID: 0}
@@ -5371,14 +5682,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1475188062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783adaa988485d74bbbf4d484697669d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c085e46ea3244243aa9a4507ba7eae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackStats:
     attack:
       baseValue: 3
-    attackSpeed:
-      baseValue: 1
     fireAttack:
       baseValue: 0
     iceAttack:
@@ -5389,13 +5698,15 @@ MonoBehaviour:
       baseValue: 0
   defenceStats:
     maxHealth:
-      baseValue: 100
+      baseValue: 200
     defence:
       baseValue: 3
     speed:
       baseValue: 5
     knockbackReduction:
       baseValue: 0
+    invulnerableDuration:
+      baseValue: 1
     fireDefence:
       baseValue: 0
     iceDefence:
@@ -5404,6 +5715,7 @@ MonoBehaviour:
       baseValue: 0
     poisonDefence:
       baseValue: 0
+  lastAttacker: {fileID: 0}
 --- !u!114 &1475188065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5417,7 +5729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 6400
+    m_Bits: 2560
   horizontalRayCount: 0
   verticalRayCount: 0
   horizontalRaySpacing: 0
@@ -5498,11 +5810,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475188062}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.71, y: 0.22, z: 0}
+  m_LocalPosition: {x: -7.62, y: -6.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1475188070
 MonoBehaviour:
@@ -5537,6 +5849,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFaceDirection: {x: 1, y: 0}
   showFaceDirection: 1
+--- !u!114 &1475188072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1475188062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd3f14045ccbba4cb97768562cf20ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultPreset: {fileID: 11400000, guid: 8d80c3c3984b80d49a91aadb63688dd0, type: 2}
 --- !u!1 &1479715785
 GameObject:
   m_ObjectHideFlags: 0
@@ -6009,7 +6333,7 @@ GameObject:
   - component: {fileID: 1638099871}
   - component: {fileID: 1638099870}
   - component: {fileID: 1638099869}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6198,7 +6522,7 @@ GameObject:
   - component: {fileID: 1641325433}
   - component: {fileID: 1641325432}
   - component: {fileID: 1641325431}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6424,7 +6748,7 @@ GameObject:
   - component: {fileID: 1672153756}
   - component: {fileID: 1672153755}
   - component: {fileID: 1672153754}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6522,7 +6846,7 @@ GameObject:
   - component: {fileID: 1734468102}
   - component: {fileID: 1734468101}
   - component: {fileID: 1734468100}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6866,6 +7190,7 @@ GameObject:
   - component: {fileID: 1762671624}
   - component: {fileID: 1762671623}
   - component: {fileID: 1762671626}
+  - component: {fileID: 1762671627}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6908,7 +7233,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1762671626
 MonoBehaviour:
@@ -6923,6 +7248,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notificationShowTime: 2
   maxNotificationBuffer: 3
+--- !u!114 &1762671627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1762671622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c969058c0080885438cec8fe53554ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendlyFillColor: {r: 0, g: 1, b: 0, a: 0.39215687}
+  hostileFillColor: {r: 1, g: 0, b: 0, a: 0.39215687}
+  material: {fileID: 2100000, guid: 96f07fb86e2bb374f8df43ab34f09983, type: 2}
+  metrics: []
+  rectangleShape: {fileID: 114612869096146550, guid: 36747ccc14a5cbe41ba2d9705bbecad7,
+    type: 2}
+  circleShape: {fileID: 114588633648450782, guid: baaf2115e53729f48b4f9bf66aa25e9d,
+    type: 2}
 --- !u!1001 &1772244282
 Prefab:
   m_ObjectHideFlags: 0
@@ -7235,7 +7579,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1846721377
 Prefab:
@@ -7361,6 +7705,72 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c3fd80aabaaf84fb7288f123c4481f, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1852796664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1852796666}
+  - component: {fileID: 1852796665}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &1852796665
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1852796664}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1.6
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &1852796666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1852796664}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: -0.88, y: -1.12, z: -0.09966931}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1865278124
 Prefab:
   m_ObjectHideFlags: 0
@@ -7628,7 +8038,7 @@ GameObject:
   - component: {fileID: 1928058090}
   - component: {fileID: 1928058089}
   - component: {fileID: 1928058088}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7830,6 +8240,7 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -7893,7 +8304,7 @@ GameObject:
   - component: {fileID: 2069391784}
   - component: {fileID: 2069391783}
   - component: {fileID: 2069391782}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Obstacle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

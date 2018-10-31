@@ -21,7 +21,6 @@ public class InventoryUI : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Inventory"))
         {
-            Debug.Log("Toggle Inventory");
             inventoryUI.SetActive(!inventoryUI.activeSelf);
         }
 	}

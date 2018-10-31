@@ -12,36 +12,32 @@ using Random = UnityEngine.Random;
 public class Bot : MonoBehaviour {
 
     [Header("General Settings")]
-    public float friendDetectionRadius;
+    public float friendDetectionRadius = 5;
     public LayerMask friendlyMask;
 
-    public float enemyDetectionRadius;
+    public float enemyDetectionRadius = 4;
     public LayerMask enemyMask;
-    public bool enableFieldOfView;
-    public float fieldOfViewAngle;
-    public float enemyHearRadius;
-
-    public LayerMask obstacleMask;
-
-    
+    public bool enableFieldOfView = true;
+    public float fieldOfViewAngle = 80;
+    public float enemyHearRadius = 2;
 
     [Header("Idle Settings")]
     public bool idleOnlyOnTargets;
-    public float idleMinTime;
-    public float idleMaxTime;
+    public float idleMinTime = 1;
+    public float idleMaxTime = 2;
 
     [HideInInspector]
     public float idleTimeLeft = 0;
 
     [Header("Patrol Settings")]
     public PatrolType patrolType;
-    public float patrolMinRadius;
-    public float patrolMaxRadius;
-    public float patrolMinTime;
-    public float patrolMaxTime;
+    public float patrolMinRadius = 5;
+    public float patrolMaxRadius = 8;
+    public float patrolMinTime = 6;
+    public float patrolMaxTime = 12;
 
     public Vector3[] patrolTargets;
-    public int maxPatrolTargets;
+    public int maxPatrolTargets = 3;
 
     [HideInInspector]
     public const float minPatrolStoppingDistance = 0.01f;
@@ -54,26 +50,33 @@ public class Bot : MonoBehaviour {
     
 
     [Header("Follow Settings")]
-    public bool allowFollow;
-    public float followTargetRefreshTime;
+    public bool allowFollow = false;
+    public Collider2D permanentFollowTarget;
+    public float maxFollowTargetDistance = 5f;
+    public float friendlyStoppingDistance = 0.5f;
+    public float followTargetRefreshTime = .5f;
 
     [Header("Attack Settings")]
-    public float attackTargetRefreshTime;
+    public float attackTargetRefreshTime = .5f;
+    public Disposition disposition;
 
     [Header("Debug Settings")]
     public bool showTreeDebugInfo = false;
     public bool showEnemyDetectionInfo = true;
     public bool showEnemyLink = true;
     public bool showFriendDetectionRadius = true;
+    public bool showFrindlyLink = false;
     public bool showPatrolTargets = true;
 
     //Status
     protected Collider2D target;
+    protected Collider2D followTarget;
 
     [HideInInspector]
     public bool targetInRange;
     [HideInInspector]
     public bool targetIsFriendly;
+
     float targetRefershTime;
 
     BoxCollider2D ctrlCollider;
@@ -81,7 +84,7 @@ public class Bot : MonoBehaviour {
     Vector3 initialPosition;
 
     [HideInInspector]
-    public BotNavAgent walker;
+    public IWalker walker;
     [HideInInspector]
     public AttackAgent attackAgent;
     [HideInInspector]
@@ -99,8 +102,7 @@ public class Bot : MonoBehaviour {
 
         attackAgent.onAttackStart += walker.Pause;
         attackAgent.onAttackComplete += walker.Resume;
-        attackAgent.enemyMask = enemyMask;
-        attackAgent.obstacleMask = obstacleMask;
+        attackAgent.Init(enemyMask, walker.GetObstacleMask());
 
         currentState = previousState = State.Idle;
         initialPosition = transform.position;
@@ -121,6 +123,7 @@ public class Bot : MonoBehaviour {
 
         ExecuteState();
         previousState = currentState;
+
     }
 
     void InitState()
@@ -156,9 +159,14 @@ public class Bot : MonoBehaviour {
                 faceController.UpdateFaceDirection(target.transform);
                 break;
             case State.Follow:
-                targetRefershTime = attackTargetRefreshTime;
-                walker.SetDestination(target.transform.position);
-                faceController.UpdateFaceDirection(target.transform);
+                targetRefershTime = followTargetRefreshTime;
+                float stoppingDistance = (followTarget.bounds.size.x > followTarget.bounds.size.y
+                    ? followTarget.bounds.size.x
+                    : followTarget.bounds.size.y
+                ) + friendlyStoppingDistance;
+                targetRefershTime = followTargetRefreshTime;
+                walker.SetDestination(followTarget.transform.position);
+                faceController.UpdateFaceDirection(followTarget.transform);
                 break;
             default: break;
         }
@@ -203,8 +211,13 @@ public class Bot : MonoBehaviour {
                 if (targetRefershTime <= 0)
                 {
                     targetRefershTime = followTargetRefreshTime;
-                    walker.SetDestination(target.transform.position);
-                    faceController.UpdateFaceDirection(target.transform);
+                    float stoppingDistance = (followTarget.bounds.size.x > followTarget.bounds.size.y 
+                        ? followTarget.bounds.size.x 
+                        : followTarget.bounds.size.y
+                    ) + friendlyStoppingDistance;
+
+                    walker.SetDestination(followTarget.transform.position, stoppingDistance);
+                    faceController.UpdateFaceDirection(followTarget.transform);
                 }
                 break;
             default: break;
@@ -220,13 +233,36 @@ public class Bot : MonoBehaviour {
         if (DetectFriend())
             return;
 
-        target = null;
-        targetInRange = false;
-        targetIsFriendly = false;
+        UnsetTarget();
     }
 
     bool DetectEnemy()
     {
+        //If the disposition is passive or defensive we will handle enemy detection 
+        if (disposition == Disposition.Passive)
+        {
+            return false;
+        }
+
+        if(disposition == Disposition.Defensive)
+        {
+            Character character;
+            if (followTarget != null && (character = followTarget.GetComponent<Character>()) != null && character.lastAttacker != null)
+            {
+                SetTarget(character.lastAttacker.GetComponent<Collider2D>(), false);
+                return true;
+            } else
+            {
+                character = GetComponent<Character>();
+                if(character != null && character.lastAttacker)
+                {
+                    SetTarget(character.lastAttacker.GetComponent<Collider2D>(), false);
+                    return true;
+                }
+                return false;
+            }
+        }
+
         Collider2D hit = Physics2D.OverlapCircle(transform.position, enemyDetectionRadius, enemyMask);
 
         //Check if there is an enemy within range
@@ -242,21 +278,17 @@ public class Bot : MonoBehaviour {
                 if (!enableFieldOfView || angle < fieldOfViewAngle * 0.5 || direction.magnitude <= enemyHearRadius)
                 {
                     //Check if target is behind obstacle
-                    RaycastHit2D obstacle = Physics2D.Raycast(transform.position, direction.normalized, direction.magnitude, obstacleMask);
+                    RaycastHit2D obstacle = Physics2D.Raycast(transform.position, direction.normalized, direction.magnitude, walker.GetObstacleMask());
 
                     if (!obstacle)
                     {
-                        target = hit;
-                        targetInRange = true;
-                        targetIsFriendly = false;
+                        SetTarget(hit, false);
                         return true;
                     }
                 }
             } else
             {
-                target = hit;
-                targetInRange = true;
-                targetIsFriendly = false;
+                SetTarget(hit, false);
                 return true;
             }
         }
@@ -266,17 +298,56 @@ public class Bot : MonoBehaviour {
 
     bool DetectFriend()
     {
+        if(permanentFollowTarget != null)
+        {
+            SetTarget(permanentFollowTarget, true);
+            
+            return true;
+        }
+
         Collider2D hit = Physics2D.OverlapCircle(transform.position, friendDetectionRadius, friendlyMask);
 
         if (hit && hit != ctrlCollider)
         {
-            target = hit;
-            targetInRange = true;
-            targetIsFriendly = true;
+            SetTarget(hit, true);
             return true;
         }
 
         return false;
+    }
+
+    void SetTarget(Collider2D hit, bool friendly)
+    {
+
+        if (friendly)
+        {
+            followTarget = hit;
+            target = null;
+        }
+        else
+        {
+            target = hit;
+            if (permanentFollowTarget == null)
+            {
+                followTarget = null;
+            }
+        }
+
+        targetInRange = true;
+        targetIsFriendly = friendly;
+
+        
+    }
+
+    void UnsetTarget()
+    {
+        target = null;
+        if (permanentFollowTarget == null)
+        {
+            followTarget = null;
+        }
+        targetInRange = false;
+        targetIsFriendly = false;
     }
 
     void GenerateDecisionTree()
@@ -303,7 +374,17 @@ public class Bot : MonoBehaviour {
                     },
                     negative = new DecisionTree<Bot, State>.Node
                     {
-                        decision = State.Attack
+                        Condition = bot =>
+                            bot.followTarget != null
+                            && (bot.followTarget.transform.position - bot.transform.position).magnitude >= maxFollowTargetDistance,
+                        positive = new DecisionTree<Bot, State>.Node
+                        {
+                            decision = State.Follow
+                        },
+                        negative = new DecisionTree<Bot, State>.Node
+                        {
+                            decision = State.Attack
+                        }
                     }
                 },
                 negative = new DecisionTree<Bot, State>.Node
@@ -417,7 +498,7 @@ public class Bot : MonoBehaviour {
             }
         }
 
-        if(showEnemyLink && targetInRange)
+        if(showEnemyLink && targetInRange && !targetIsFriendly)
         {
             //Check if target is behind obstacle
             Gizmos.color = Color.red;
@@ -430,7 +511,12 @@ public class Bot : MonoBehaviour {
             Gizmos.DrawWireSphere(transform.position, friendDetectionRadius);
         }
 
-        
+        if (showFrindlyLink && targetInRange && targetIsFriendly)
+        {
+            //Check if target is behind obstacle
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, followTarget.transform.position);
+        }
     }
 
     public enum PatrolType
@@ -446,6 +532,13 @@ public class Bot : MonoBehaviour {
         Patrol,
         Attack,
         Follow
+    }
+
+    public enum Disposition
+    {
+        Aggressive,
+        Passive,
+        Defensive
     }
 
     public class DecisionTree<Client, Result>

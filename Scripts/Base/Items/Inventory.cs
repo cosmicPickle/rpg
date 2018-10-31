@@ -55,9 +55,7 @@ public class Inventory : MonoBehaviour {
 
     public void Remove(Item item)
     {
-        print(items.Count);
         items.Remove(item);
-        print(items.Count);
         if (onChanged != null)
         {
             onChanged();

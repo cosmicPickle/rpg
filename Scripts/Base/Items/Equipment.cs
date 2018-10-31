@@ -6,6 +6,7 @@ using UnityEngine;
 public class Equipment : Item {
 
     public Slot equipSlot;
+    public AttackAgentPreset attackAgent;
     public AttackStatSheet attackStats = new AttackStatSheet();
     public DefenceStatSheet defenceStats = new DefenceStatSheet();
 

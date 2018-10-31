@@ -5,11 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class DefenceStatSheet: IOnTooltipShow
 {
+    public const float maxDamageReduction = 0.8f;
 
     public Stat maxHealth;
     public Stat defence;
     public Stat speed;
     public Stat knockbackReduction;
+    public Stat invulnerableDuration;
 
     public Stat fireDefence;
     public Stat iceDefence;
@@ -46,6 +48,10 @@ public class DefenceStatSheet: IOnTooltipShow
             poisonDefence.AddModifier(sheet.poisonDefence.GetValue());
         if (sheet.speed.GetValue() != 0)
             speed.AddModifier(sheet.speed.GetValue());
+        if (sheet.knockbackReduction.GetValue() != 0)
+            knockbackReduction.AddModifier(sheet.knockbackReduction.GetValue());
+        if (sheet.invulnerableDuration.GetValue() != 0)
+            invulnerableDuration.AddModifier(sheet.invulnerableDuration.GetValue());
     }
 
     public void RemoveStatBulk(DefenceStatSheet sheet)
@@ -64,6 +70,10 @@ public class DefenceStatSheet: IOnTooltipShow
             poisonDefence.RemoveModifier(sheet.poisonDefence.GetValue());
         if (sheet.speed.GetValue() != 0)
             speed.RemoveModifier(sheet.speed.GetValue());
+        if (sheet.knockbackReduction.GetValue() != 0)
+            knockbackReduction.RemoveModifier(sheet.knockbackReduction.GetValue());
+        if (sheet.invulnerableDuration.GetValue() != 0)
+            invulnerableDuration.RemoveModifier(sheet.invulnerableDuration.GetValue());
     }
 
     public float CalculateDamage(List<AttackStatSheet.Attack> attacks)
@@ -72,7 +82,8 @@ public class DefenceStatSheet: IOnTooltipShow
 
         attacks.ForEach(attack =>
         {
-            finalDamage += (attack.value - attackToDefenceMap[attack.name].GetValue());
+            float defenceValue = attackToDefenceMap[attack.name].GetValue();
+            finalDamage += (attack.value - Mathf.Clamp(defenceValue/100, 0, maxDamageReduction) * attack.value);
         });
 
         return finalDamage;
@@ -94,9 +105,13 @@ public class DefenceStatSheet: IOnTooltipShow
             final += "ice defence: " + iceDefence.GetValue().ToString() + "\n";
         if (shockDefence.GetValue() > 0)
             final += "poison defence: " + shockDefence.GetValue().ToString() + "\n";
-        if (poisonDefence.GetValue() > 0)
+        if (shockDefence.GetValue() > 0)
             final += "shock defence: " + poisonDefence.GetValue().ToString() + "\n";
-        
+        if (knockbackReduction.GetValue() > 0)
+            final += "knockback reduction: " + knockbackReduction.GetValue().ToString() + "\n";
+        if (invulnerableDuration.GetValue() > 0)
+            final += "invulnerable duration: " + invulnerableDuration.GetValue().ToString() + "\n";
+
         final += "</size>";
         return final;
     }

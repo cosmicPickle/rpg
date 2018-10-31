@@ -27,6 +27,14 @@ public class MeleeAttackAgent : AttackAgent {
         {
             RecalculateAttackArea();
 
+            Vector2[] positions = new[] { attackArea.leadingPoing, attackArea.trailingPoint };
+            List<float> metrics = new List<float> { attackArea.size.x, attackArea.size.y };
+            string layer = LayerMask.LayerToName(gameObject.layer);
+
+            Telegrams.TelegramType type = layer == "Player" || layer == "Friendly" ? Telegrams.TelegramType.Friendly : Telegrams.TelegramType.Hostile;
+
+            Telegrams.instance.DrawRetangle("Attack_" + gameObject.GetInstanceID(), positions.Centroid(), type, metrics);
+
             Collider2D[] hits = Physics2D.OverlapAreaAll(attackArea.leadingPoing, attackArea.trailingPoint, enemyMask);
 
             for(int i = 0; i < hits.Length; i++)
@@ -45,6 +53,9 @@ public class MeleeAttackAgent : AttackAgent {
                     }
                 }
             }
+        } else
+        {
+            Telegrams.instance.Hide("Attack_" + gameObject.GetInstanceID());
         }
     }
 
@@ -60,6 +71,10 @@ public class MeleeAttackAgent : AttackAgent {
         Vector2 fDirNormalRight = -fDirNormalLeft;
         Vector2 bottomRight = (Vector2)transform.position + fDir * ctrlCollider.size / 2 + fDirNormalRight * range / 2;
         Vector2 topLeft = bottomRight + fDir * range + fDirNormalLeft * range;
+        attackArea.size = new Vector2(
+            Mathf.Abs(topLeft.x - bottomRight.x),
+            Mathf.Abs(topLeft.y - bottomRight.y)
+        );
 
         switch (attackDirection)
         {
@@ -70,16 +85,48 @@ public class MeleeAttackAgent : AttackAgent {
             case AttackDirection.LeftToRight:
                 attackArea.leadingPoing = topLeft - fDir * range + fDirNormalRight * range * (1 - timeToAttackComplete / attackDuration);
                 attackArea.trailingPoint = topLeft;
+
+                if (fDir.x != 0)
+                {
+                    attackArea.size.y *= (1 - timeToAttackComplete / attackDuration);
+                }
+                else if (fDir.y != 0)
+                {
+                    attackArea.size.x *= (1 - timeToAttackComplete / attackDuration);
+                }
+
                 break;
             case AttackDirection.RightToLeft:
                 attackArea.leadingPoing = bottomRight + fDirNormalLeft * range * (1 - timeToAttackComplete / attackDuration); 
                 attackArea.trailingPoint = bottomRight + fDir * range;
+
+                if (fDir.x != 0)
+                {
+                    attackArea.size.y *= (1 - timeToAttackComplete / attackDuration);
+                }
+                else if (fDir.y != 0)
+                {
+                    attackArea.size.x *= (1 - timeToAttackComplete / attackDuration);
+                }
+
                 break;
             case AttackDirection.Outward:
                 attackArea.leadingPoing = topLeft - fDir * range + fDir * range * (1 - timeToAttackComplete / attackDuration);
                 attackArea.trailingPoint = bottomRight;
+
+                if (fDir.x != 0)
+                {
+                    attackArea.size.x *= (1 - timeToAttackComplete / attackDuration);
+                }
+                else if (fDir.y != 0)
+                {
+                    attackArea.size.y *= (1 - timeToAttackComplete / attackDuration);
+                }
                 break;
         }
+
+
+        
     }
 
     void OnDrawGizmos()
@@ -109,5 +156,6 @@ public class MeleeAttackAgent : AttackAgent {
     {
         public Vector2 leadingPoing;
         public Vector2 trailingPoint;
+        public Vector2 size;
     }
 }

@@ -6,10 +6,12 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Controller2D))]
 [RequireComponent(typeof(NavMeshAgent2D))]
 [RequireComponent(typeof(Character))]
+[RequireComponent(typeof(AttackAgentManager))]
 public class PlayerController : MonoBehaviour {
 
     public float interactableDetectDistance = 3f;
-    public LayerMask intercatableMask;
+    public LayerMask interactableMask;
+    public LayerMask enemyMask;
 
     [HideInInspector]
     public Controller2D controller;
@@ -20,22 +22,57 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public Vector2 playerInput;
 
+    AttackAgentManager attackAgentManager;
+    AttackAgent attackAgent;
+
     const float mouseRaycastDistance = 50f;
+
+    Character.Knockback currentKnockback;
 
 	// Use this for initialization
 	void Awake () {
         controller = GetComponent<Controller2D>();
         character = GetComponent<Character>();
         controller.SetSpeed(character.defenceStats.speed.GetValue());
+
+        attackAgentManager = GetComponent<AttackAgentManager>();
+        attackAgentManager.Instantiate();
+
+        attackAgent = attackAgentManager.GetAttackAgent();
+        if (attackAgent != null)
+        {
+            attackAgent.Init(enemyMask, controller.collisionMask);
+        }
+
+        character.onTakeDamage += OnTakeDamage;
+        EquipmentManager.onEquipmentChanged += OnEquipmentChanged;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if(attackAgent == null)
+        {
+            attackAgent = attackAgentManager.GetAttackAgent();
+            if (attackAgent != null)
+            {
+                attackAgent.Init(enemyMask, controller.collisionMask);
+            }
+        }
 
-        if(EventSystem.current.IsPointerOverGameObject())
+        if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
+
+        if(currentKnockback.effect > 0)
+        {
+            Vector2 moveAmount = currentKnockback.direction * Time.deltaTime * currentKnockback.speed;
+            currentKnockback.effect -= moveAmount.magnitude;
+            controller.Move(moveAmount, -1);
+            
+            return;
+        }
+
         controller.SetSpeed(character.defenceStats.speed.GetValue());
 
         playerInput = Vector2.zero;
@@ -73,17 +110,32 @@ public class PlayerController : MonoBehaviour {
                 hit = FindClosestInteractable();
             }
 
+            bool hasInteracted = false;
+
             if (hit)
             {
                 Interactable interactable = hit.GetComponent<Interactable>();
                 if (interactable != null)
                 {
                     SetFocus(interactable);
+                    hasInteracted = true;
                 }
             }
+
+            if(!hasInteracted)
+            {
+                PerformDefaultAction();
+            }
+            
         }
+    }
 
-
+    void PerformDefaultAction()
+    {
+        if (attackAgent != null)
+        {
+            attackAgent.Attack();
+        }
     }
 
     void SetFocus(Interactable newFocus)
@@ -112,6 +164,25 @@ public class PlayerController : MonoBehaviour {
         controller.StopFollowingTarget();
     }
 
+    void OnTakeDamage(float finalDamage, Character.Knockback knockback, AttackAgent attackAgent) 
+    {
+        currentKnockback = knockback;
+    }
+
+    void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
+    {
+        if (newItem != null)
+        {
+            attackAgentManager.ChangePreset(newItem.attackAgent);
+        } else
+        {
+            if(oldItem != null)
+            {
+                attackAgentManager.Reset();
+            }
+        }
+    }
+
     Vector2 CastRayToWorld()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -122,7 +193,7 @@ public class PlayerController : MonoBehaviour {
     Collider2D CastRayToInteractable()
     {
         Vector2 cameraToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(cameraToWorld, Vector2.zero, 0f, intercatableMask);
+        RaycastHit2D hit = Physics2D.Raycast(cameraToWorld, Vector2.zero, 0f, interactableMask);
 
         return hit ? hit.collider : null;
 
@@ -130,7 +201,7 @@ public class PlayerController : MonoBehaviour {
 
     Collider2D FindClosestInteractable()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactableDetectDistance, intercatableMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactableDetectDistance, interactableMask);
 
         float minSqrtDistance = float.MaxValue;
         Collider2D target = null;

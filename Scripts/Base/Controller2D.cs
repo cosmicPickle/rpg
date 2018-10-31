@@ -15,6 +15,8 @@ public class Controller2D : RaycastController {
     Vector2 warpVelocity;
     Vector2 lastMoveAmount;
 
+    int faceDirectionOverride = 1;
+
     public override void Awake() {
         base.Awake();
 
@@ -26,7 +28,7 @@ public class Controller2D : RaycastController {
 
     void Update()
     {
-        faceController.UpdateFaceDirection((agent.velocity != Vector2.zero ? agent.velocity : lastMoveAmount));
+        faceController.UpdateFaceDirection((agent.velocity != Vector2.zero ? agent.velocity : lastMoveAmount) * faceDirectionOverride);
         if (target != null)
         {
             agent.SetDestination(target.position);
@@ -45,8 +47,10 @@ public class Controller2D : RaycastController {
         }
     }
 
-    public void Move(Vector2 moveAmount)
+    public void Move(Vector2 moveAmount, int faceDirection = 1)
     {
+        faceDirectionOverride = faceDirection;
+
         UpdateRaycastOrigins();
         collisions.Reset();
 
@@ -71,11 +75,13 @@ public class Controller2D : RaycastController {
 
     public void MoveToPoint(Vector2 point)
     {
+        faceDirectionOverride = 1;
         agent.SetDestination(point);
     }
 
     public void FollowTarget(Interactable newTarget)
     {
+        faceDirectionOverride = 1;
         agent.stoppingDistance = newTarget.radius * 0.8f ;
         target = newTarget.transform;
     }

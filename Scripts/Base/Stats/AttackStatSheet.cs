@@ -7,7 +7,6 @@ public class AttackStatSheet: IOnTooltipShow
 {
 
     public Stat attack;
-    public Stat attackSpeed;
 
     public Stat fireAttack;
     public Stat iceAttack;

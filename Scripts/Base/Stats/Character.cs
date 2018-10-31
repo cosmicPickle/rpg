@@ -5,51 +5,67 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     protected float currentHealth;
-    public AttackStatSheet attackStats = new AttackStatSheet();
-    public DefenceStatSheet defenceStats = new DefenceStatSheet();
+    public AttackStatSheet attackStats;
+    public DefenceStatSheet defenceStats;
 
-    public delegate void OnTakeDamage(float finalDamage, AttackAgent attackAgent);
+    public delegate void OnTakeDamage(float finalDamage, Knockback knockbackEffect, AttackAgent attackAgent);
     public delegate void OnDeath(AttackAgent attackAgent);
 
     public OnTakeDamage onTakeDamage;
     public OnDeath onDeath;
 
-    void Awake()
+    public const float attackerMemoryDuration = 2f;
+    [HideInInspector]
+    public AttackAgent lastAttacker;
+    float attackerMemoryDurationLeft = 0f;
+
+    protected float invulnerableDurationLeft = 0;
+
+    protected virtual void Awake()
     {
         currentHealth = defenceStats.maxHealth.GetValue();
         defenceStats.InitDefenceMap();
-        EquipmentManager.onEquipmentChanged += OnEquipmentChanged;
     }
 
-
-    void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
+    void Update()
     {
-        if (oldItem != null)
+        if(invulnerableDurationLeft > 0)
         {
-            attackStats.RemoveStatBulk(oldItem.attackStats);
-            defenceStats.RemoveStatBulk(oldItem.defenceStats);
+            invulnerableDurationLeft -= Time.deltaTime;
         }
 
-        if (newItem != null)
+        if(attackerMemoryDurationLeft > 0)
         {
-            attackStats.AddStatBulk(newItem.attackStats);
-            defenceStats.AddStatBulk(newItem.defenceStats);
+            attackerMemoryDurationLeft -= Time.deltaTime;
+        } else
+        {
+            attackerMemoryDurationLeft = 0;
+            lastAttacker = null;
         }
     }
 
     public void TakeDamage(List<AttackStatSheet.Attack> attacks, AttackAgent attackAgent)
     {
+        if (invulnerableDurationLeft > 0)
+            return;
+
+        lastAttacker = attackAgent;
+        attackerMemoryDurationLeft = attackerMemoryDuration;
+
         float finalDamage = defenceStats.CalculateDamage(attacks);
         currentHealth -= finalDamage;
+        invulnerableDurationLeft = defenceStats.invulnerableDuration.GetValue();
 
-        //TODO: ADD KNOCKBACK
-        Vector2 knockbackDirection = (transform.position - attackAgent.transform.position).normalized;
-        float knockbackEffect = attackAgent.knockback.GetValue() - defenceStats.knockbackReduction.GetValue();
-
+        Knockback knockback = new Knockback
+        {
+            direction = (transform.position - attackAgent.transform.position).normalized,
+            effect = attackAgent.knockback.GetValue() - defenceStats.knockbackReduction.GetValue(),
+            speed = attackAgent.knockbackSpeed.GetValue()
+        };
         
         if (onTakeDamage != null)
         {
-            onTakeDamage(finalDamage, attackAgent);
+            onTakeDamage(finalDamage, knockback, attackAgent);
         }
 
         if(currentHealth <= 0)
@@ -63,11 +79,18 @@ public class Character : MonoBehaviour
             }
         }
 
-        Debug.Log("Taking damage: " + finalDamage + " Current Health: " + currentHealth);
+        Debug.Log(gameObject.tag + " taking damage: " + finalDamage + " Current Health: " + currentHealth);
     }
 
     protected virtual void Die()
     {
 
+    }
+
+    public struct Knockback
+    {
+        public Vector2 direction;
+        public float effect;
+        public float speed;
     }
 }

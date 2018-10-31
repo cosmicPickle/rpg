@@ -7,12 +7,15 @@ public class AttackAgent : MonoBehaviour
 {
 
     public float range;
+
     public Stat knockback;
+    public Stat knockbackSpeed;
+
     public Stat attackRate;
     public float attackDuration;
 
-    public LayerMask enemyMask;
-    public LayerMask obstacleMask;
+    protected LayerMask enemyMask;
+    protected LayerMask obstacleMask;
 
     public delegate void OnAttackStart();
     public delegate void OnAttackComplete();
@@ -32,6 +35,13 @@ public class AttackAgent : MonoBehaviour
     {
         character = GetComponent<Character>();
     }
+
+    public void Init(LayerMask enemies, LayerMask obstacles)
+    {
+        enemyMask = enemies;
+        obstacleMask = obstacles;
+    }
+
 
     protected virtual void Update()
     {
@@ -63,8 +73,17 @@ public class AttackAgent : MonoBehaviour
         }
     }
 
+    public void Attack()
+    {
+        Attack(null);
+    }
+
     public void Attack(Transform newTarget)
     {
+        if(enemyMask == 0)
+        {
+            Debug.LogWarning("AttackAgent's EnemyMask is not being set. No damage will be done.");
+        }
         if (timeToNextAttack > 0)
             return;
 

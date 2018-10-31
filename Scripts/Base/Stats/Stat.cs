@@ -7,8 +7,13 @@ public class Stat {
 
     [SerializeField]
     private float baseValue;
-    private List<float> modifiers = new List<float>();
+    private List<float> modifiers;
 
+    public Stat()
+    {
+        Debug.Log("BLIP");
+        modifiers = new List<float>();
+    }
 
     public float GetValue()
     {

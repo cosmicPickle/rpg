@@ -9,16 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b7b1093d00f7fc419b1a064b809e243, type: 3}
-  m_Name: Stick
+  m_Name: Knife
   m_EditorClassIdentifier: 
-  name: Stick
+  name: Knife
   icon: {fileID: 21300000, guid: af50dc4fa7b6d314895d0f8c79adb4a5, type: 3}
   equipSlot: 0
+  attackAgent: {fileID: 11400000, guid: 9a143f8504673164bb482b9c2a583d4f, type: 2}
   attackStats:
     attack:
       baseValue: 5
-    attackSpeed:
-      baseValue: 1.5
     fireAttack:
       baseValue: 0
     iceAttack:
@@ -31,6 +30,12 @@ MonoBehaviour:
     maxHealth:
       baseValue: 0
     defence:
+      baseValue: 0
+    speed:
+      baseValue: 0
+    knockbackReduction:
+      baseValue: 0
+    invulnerableDuration:
       baseValue: 0
     fireDefence:
       baseValue: 0

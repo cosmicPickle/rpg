@@ -32,8 +32,6 @@ public class CharacterUI : MonoBehaviour {
             }
         }
 
-        Debug.Log(equipmentSlots[3]);
-
     }
 
     // Update is called once per frame
